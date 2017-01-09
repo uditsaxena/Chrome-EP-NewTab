@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Test Extension Options</title>
+  <style>
+    body: { padding: 10px; }
+  </style>
+  <script src="javascript/jquery/jquery.min.js"></script>
+  <script src="javascript/options.js"></script>
+</head>
+
+<body>
+  <label> Add new subreddit
+  <input type="text" name="subredditName" list="subreddit"/>
+  <datalist id="subreddit" name="subreddit">
+  <option >r/EarthPorn</option>
+</datalist>
+
+
+</label>
+  <div id="status"></div>
+  <button id="save">Save</button>
+  <button id="clear">Clear</button>
+</body>
+</html>

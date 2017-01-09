@@ -130,7 +130,11 @@ backgrounds.Photo = new Model({
     /**
      * Displays the image.
      */
-    display: function(limitImages, cacheSize) {
+    display : function(limitImages, cacheSize) {
+        var redditName = chrome.storage.sync.get(["subreddits"]
+        , function(items, limitImages, cacheSize) {
+            limitImages = 10;
+            cacheSize = 2;
         this.hideShareButtons();
         count = localStorage.getItem("count");
         if (count === null) {
@@ -206,8 +210,18 @@ backgrounds.Photo = new Model({
                 }
             }
         }
-        xmlHttp.open("GET", "https://www.reddit.com/r/EarthPorn/top/.json?limit="+Number(limitImages), true);
+        
+            //console.log("Before adding: " + subRedditArray);
+            var arra = String(items["subreddits"]).split(",");
+            console.log("Hello: " + arra);
+            var asd = Number(Math.floor(Math.random() * (arra.length - 0)));
+            console.log(String(arra[asd]));
+            //subRedditArray.push(items["subreddits"]);
+        
+        // console.log("redditNames are : " + redditName);
+        xmlHttp.open("GET", "https://www.reddit.com/"+String(arra[asd])+"/top/.json?limit="+Number(limitImages), true);
         xmlHttp.send(null);
         localStorage.setItem("count", Number(count) + 1);
-    }
+    }.bind(this));
+}
 });
